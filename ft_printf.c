@@ -15,19 +15,19 @@
 int	ft_printf_sub(va_list arglist, char c)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(arglist, int)));
+		return (ft_printchar(va_arg(arglist, int)));
 	if (c == 's')
-		return (ft_putstr(va_arg(arglist, char *)));
+		return (ft_printstr(va_arg(arglist, char *)));
 	if (c == 'p')
-		return (ft_putnbr_ptr(va_arg(arglist, size_t)));
+		return (ft_printnbr_ptr(va_arg(arglist, size_t)));
 	if (c == 'd' || c == 'i')
-		return (ft_putnbr(va_arg(arglist, int)));
+		return (ft_printnbr(va_arg(arglist, int)));
 	if (c == 'u')
-		return (ft_putnbr_u(va_arg(arglist, unsigned int)));
+		return (ft_printnbr_u(va_arg(arglist, unsigned int)));
 	if (c == 'x' || c == 'X')
-		return (ft_putnbr_hex(va_arg(arglist, unsigned int), c));
+		return (ft_printnbr_hex(va_arg(arglist, unsigned int), c));
 	if (c == '%')
-		return (ft_putchar('%'));
+		return (ft_printchar('%'));
 	else
 		return (0);
 }
@@ -42,7 +42,7 @@ int	ft_printf(const char *str, ...)
 	while (*str && str)
 	{
 		if (*str != '%')
-			count += ft_putchar(*str++);
+			count += ft_printchar(*str++);
 		if (*str == '%')
 		{	
 			str++;

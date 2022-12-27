@@ -17,12 +17,12 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-int		ft_putchar(int c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
-int		ft_putnbr_hex(unsigned int n, char x);
-int		ft_putnbr_ptr(size_t n);
-int		ft_putnbr_u(unsigned int n);
+int		ft_printchar(int c);
+int		ft_printnbr(int n);
+int		ft_printstr(char *s);
+int		ft_printnbr_hex(unsigned int n, char x);
+int		ft_printnbr_ptr(size_t n);
+int		ft_printnbr_u(unsigned int n);
 int		ft_strlen(const char *s);
 int		ft_printf(const char *str, ...);
 

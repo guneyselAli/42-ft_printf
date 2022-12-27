@@ -1,42 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
+/*   ft_printnbr_hex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguneyse <aguneyse@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 16:09:11 by aguneyse          #+#    #+#             */
-/*   Updated: 2022/12/27 16:09:37 by aguneyse         ###   ########.fr       */
+/*   Created: 2022/12/27 16:36:59 by aguneyse          #+#    #+#             */
+/*   Updated: 2022/12/27 16:37:02 by aguneyse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_u_sub(unsigned int n)
+void	ft_hex_sub(unsigned int n, char x)
 {
-	if (n >= 10)
+	if (n >= 16)
 	{
-		ft_putnbr_u_sub(n / 10);
-		ft_putnbr_u_sub(n % 10);
+		ft_hex_sub((n / 16), x);
+		ft_hex_sub((n % 16), x);
 	}
 	else
-		ft_putchar(n + 48);
+	{
+		if (x == 'X')
+			ft_printchar("0123456789ABCDEF"[n]);
+		else
+			ft_printchar("0123456789abcdef"[n]);
+	}
 }
 
-int	ft_putnbr_u(unsigned int n)
+int	ft_printnbr_hex(unsigned int n, char x)
 {
-	int				digits;
 	unsigned int	nb;
+	int				digits;
 
-	digits = 1;
 	nb = n;
+	digits = 1;
 	if (n == 0)
-		return (ft_putchar('0'));
-	while (n >= 10)
+		return (ft_printchar('0'));
+	while (nb >= 16)
 	{
-		n /= 10;
-		digits ++;
+		nb = nb / 16;
+		digits++;
 	}
-	ft_putnbr_u_sub(nb);
+	ft_hex_sub(n, x);
 	return (digits);
 }

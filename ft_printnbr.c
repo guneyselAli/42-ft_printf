@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_printnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguneyse <aguneyse@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 16:10:04 by aguneyse          #+#    #+#             */
-/*   Updated: 2022/12/27 16:10:20 by aguneyse         ###   ########.fr       */
+/*   Created: 2022/12/27 16:37:31 by aguneyse          #+#    #+#             */
+/*   Updated: 2022/12/27 16:37:32 by aguneyse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_sub(int n)
+void	ft_printnbr_sub(int n)
 {
 	if (n >= 10)
 	{
-		ft_putnbr_sub(n / 10);
-		ft_putnbr_sub(n % 10);
+		ft_printnbr_sub(n / 10);
+		ft_printnbr_sub(n % 10);
 	}
 	else
-		ft_putchar(n + 48);
+		ft_printchar(n + 48);
 }
 
-int	ft_putnbr(int n)
+int	ft_printnbr(int n)
 {
 	int	digits;
 	int	nb;
@@ -35,11 +35,11 @@ int	ft_putnbr(int n)
 		return (1);
 	}
 	if (n == -2147483648)
-		return (ft_putstr("-2147483648"));
+		return (ft_printstr("-2147483648"));
 	if (n < 0)
 	{
 		n *= -1;
-		ft_putchar('-');
+		ft_printchar('-');
 		digits++;
 	}
 	nb = n;
@@ -48,6 +48,6 @@ int	ft_putnbr(int n)
 		n /= 10;
 		digits ++;
 	}
-	ft_putnbr_sub(nb);
+	ft_printnbr_sub(nb);
 	return (digits);
 }

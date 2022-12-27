@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_ptr.c                                    :+:      :+:    :+:   */
+/*   ft_printnbr_u.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguneyse <aguneyse@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 16:08:09 by aguneyse          #+#    #+#             */
-/*   Updated: 2022/12/27 16:08:30 by aguneyse         ###   ########.fr       */
+/*   Created: 2022/12/27 16:37:20 by aguneyse          #+#    #+#             */
+/*   Updated: 2022/12/27 16:37:23 by aguneyse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_ptr_sub(size_t n)
+void	ft_printnbr_u_sub(unsigned int n)
 {
-	if (n >= 16)
+	if (n >= 10)
 	{
-		ft_ptr_sub(n / 16);
-		ft_ptr_sub(n % 16);
+		ft_printnbr_u_sub(n / 10);
+		ft_printnbr_u_sub(n % 10);
 	}
 	else
-		ft_putchar("0123456789abcdef"[n]);
+		ft_printchar(n + 48);
 }
 
-int	ft_putnbr_ptr(size_t n)
+int	ft_printnbr_u(unsigned int n)
 {
-	size_t	nb;
-	int		digits;
+	int				digits;
+	unsigned int	nb;
 
+	digits = 1;
 	nb = n;
-	digits = 3;
-	ft_putstr("0x");
 	if (n == 0)
-		return (ft_putchar('0') + 2);
-	while (nb >= 16)
+		return (ft_printchar('0'));
+	while (n >= 10)
 	{
-		nb = nb / 16;
-		digits++;
+		n /= 10;
+		digits ++;
 	}
-	ft_ptr_sub(n);
+	ft_printnbr_u_sub(nb);
 	return (digits);
 }

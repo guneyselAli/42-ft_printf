@@ -1,5 +1,5 @@
-SRCS	=	ft_printf.c	ft_putnbr_hex.c	ft_putstr.c	ft_putchar.c \
-			ft_putnbr.c	ft_putnbr_u.c	ft_strlen.c	ft_putnbr_ptr.c
+SRCS	=	ft_printf.c	ft_printnbr_hex.c	ft_printstr.c	ft_printchar.c \
+			ft_printnbr.c	ft_printnbr_u.c	ft_strlen.c	ft_printnbr_ptr.c
 OBJS    =   $(SRCS:.c=.o)
 NAME    =   libftprintf.a
 FLAGS   =   -Werror -Wall -Wextra
