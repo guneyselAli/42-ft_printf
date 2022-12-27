@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguneyse <aguneyse@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/27 16:10:04 by aguneyse          #+#    #+#             */
+/*   Updated: 2022/12/27 16:10:20 by aguneyse         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-void ft_putnbr_sub(int n)
+
+void	ft_putnbr_sub(int n)
 {
 	if (n >= 10)
 	{
@@ -10,11 +23,10 @@ void ft_putnbr_sub(int n)
 		ft_putchar(n + 48);
 }
 
-
 int	ft_putnbr(int n)
 {
-	int digits;
-	int nb;
+	int	digits;
+	int	nb;
 
 	digits = 1;
 	if (n == 0)
@@ -23,7 +35,7 @@ int	ft_putnbr(int n)
 		return (1);
 	}
 	if (n == -2147483648)
-		return(ft_putstr("-2147483648"));
+		return (ft_putstr("-2147483648"));
 	if (n < 0)
 	{
 		n *= -1;

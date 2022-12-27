@@ -1,42 +1,54 @@
-#include "ft_printf.h"
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguneyse <aguneyse@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/27 11:54:54 by aguneyse          #+#    #+#             */
+/*   Updated: 2022/12/27 11:58:23 by aguneyse         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_printf(const char *str, ...)
+#include "ft_printf.h"
+
+int	ft_printf_sub(va_list arglist, char c)
 {
-	va_list arglist;
-	int count;
+	if (c == 'c')
+		return (ft_putchar(va_arg(arglist, int)));
+	if (c == 's')
+		return (ft_putstr(va_arg(arglist, char *)));
+	if (c == 'p')
+		return (ft_putnbr_ptr(va_arg(arglist, size_t)));
+	if (c == 'd' || c == 'i')
+		return (ft_putnbr(va_arg(arglist, int)));
+	if (c == 'u')
+		return (ft_putnbr_u(va_arg(arglist, unsigned int)));
+	if (c == 'x' || c == 'X')
+		return (ft_putnbr_hex(va_arg(arglist, unsigned int), c));
+	if (c == '%')
+		return (ft_putchar('%'));
+	else
+		return (0);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	arglist;
+	int		count;
 
 	count = 0;
 	va_start(arglist, str);
-	if (!str)
-		return (0);
-	while (*str)
+	while (*str && str)
 	{
 		if (*str != '%')
-			count += ft_putchar(*str);
+			count += ft_putchar(*str++);
 		if (*str == '%')
-		{
+		{	
 			str++;
-			if (*str == 'c')
-				count += ft_putchar(va_arg(arglist, int));
-			if (*str == 's')
-				count += ft_putstr(va_arg(arglist, char *));
-			if (*str == 'p')
-				count += ft_putnbr_ptr(va_arg(arglist, size_t));   
-			if (*str == 'd' || *str == 'i')
-				count += ft_putnbr(va_arg(arglist,int));
-			if (*str == 'u')
-				count += ft_putnbr_u(va_arg(arglist, unsigned int));
-			if (*str == 'x')
-				count += ft_putnbr_hex(va_arg(arglist, unsigned int), 0);
-			if (*str == 'X')
-				count += ft_putnbr_hex(va_arg(arglist,unsigned int), 1);
-			if (*str == '%')
-				count += ft_putchar('%');
+			if (*str != 0)
+				count += ft_printf_sub(arglist, *str++);
 		}
-		str++;
 	}
-	return(count);
+	return (count);
 }
