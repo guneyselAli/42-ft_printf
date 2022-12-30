@@ -56,5 +56,6 @@ int	ft_printf(const char *str, ...)
 			}
 		}
 	}
+	va_end(arglist);
 	return (count);
 }
